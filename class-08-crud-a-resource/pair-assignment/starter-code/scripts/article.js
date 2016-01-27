@@ -19,10 +19,10 @@
     return template(this);
   };
 
-  // TODO: Set up a DB table for articles.
+  // DONE: Set up a DB table for articles.
   Article.createTable = function(callback) {
     webDB.execute(
-      '...',
+      'CREATE TABLE IF NOT articles (id INTEGER PRIMARY KEY, author VARCHAR(255) NOT NULL, title VARCHAR(255) NOT NULL, category VARCHAR(255),authorUrl VARCHAR(255), publishedOn DATETIME, TEXT TEXT NOT NULL);',
       function(result) {
         console.log('Successfully set up the articles table.', result);
         if (callback) callback();
@@ -30,45 +30,45 @@
     );
   };
 
-  // TODO: Correct the SQL to delete all records from the articles table.
+  // DONE: Correct the SQL to delete all records from the articles table.
   Article.truncateTable = function(callback) {
     webDB.execute(
-      'DELETE ...;',
+      'DELETE FROM Articles;',
       callback
     );
   };
 
 
-  // TODO: Insert an article instance into the database:
+  // DONE: Insert an article instance into the database:
   Article.prototype.insertRecord = function(callback) {
     webDB.execute(
       [
         {
-          'sql': '...;',
-          'data': [],
+          'sql': 'INSERT INTO Article (body, category, title, authorUrl, publishedOn, author) VALUES (value1, value2, value3, value4);',
+          'data': [this.body, this.publishedOn, this.category, this.title, this.author, this.authorUrl],
         }
       ],
       callback
     );
   };
 
-  // TODO: Delete an article instance from the database:
+  // DONE: Delete an article instance from the database:
   Article.prototype.deleteRecord = function(callback) {
     webDB.execute(
       [
         {
-          /* ... */
+          'sql': 'DELETE FROM Article WHERE id= value'
         }
       ],
       callback
     );
   };
 
-  // TODO: Update an article instance, overwriting it's properties into the corresponding record in the database:
+  // DONE: Update an article instance, overwriting it's properties into the corresponding record in the database:
   Article.prototype.updateRecord = function(callback) {
     webDB.execute(
       [
-        /* ... */
+        'sql': 'UPDATE Article (body, category, title, authorUrl, publishedOn, author) VALUES (value1, value2, value3, value4);'
       ],
       callback
     );
@@ -80,13 +80,14 @@
       return new Article(ele);
     });
   };
-
+            //GOT STUCK HERE. I GET HOW TO CHECK THE DB FOR ALL RECORDS but dont know what to do with .loadAll
   // TODO: Refactor this to check if the database holds any records or not. If the DB is empty,
   // we need to retrieve the JSON and process it.
   // If the DB has data already, we'll load up the data (sorted!), and then hand off control to the View.
   Article.fetchAll = function(next) {
-    webDB.execute('', function(rows) {
+    webDB.execute('SELECT * FROM Article', function(rows) {
       if (rows.length) {
+        rows.loadAlll;
         // Now instanitate those rows with the .loadAll function, and pass control to the view.
 
       } else {
@@ -98,7 +99,7 @@
 
           });
           // Now get ALL the records out the DB, with their database IDs:
-          webDB.execute('', function(rows) {
+          webDB.execute('SELECT * FROM Article', function(rows) {
             // Now instanitate those rows with the .loadAll function, and pass control to the view.
 
           });
