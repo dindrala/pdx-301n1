@@ -7,7 +7,7 @@
     articleView.index(ctx.articles);
   };
 
-  // TODO: Middleware for grabbing one article by ID:
+  // DONE: Middleware for grabbing one article by ID:
   articlesController.loadById = function(ctx, next) {
     var articleData = function(article) {
       ctx.articles = article;
@@ -17,7 +17,7 @@
     Article.findWhere('id', ctx.params.id, articleData);
   };
 
-  // TODO: Middleware for loading up articles by a certain author:
+  // DONE: Middleware for loading up articles by a certain author:
   articlesController.loadByAuthor = function(ctx, next) {
     var authorData = function(articlesByAuthor) {
       ctx.articles = articlesByAuthor;
@@ -27,7 +27,7 @@
     Article.findWhere('author', ctx.params.authorName.replace('+', ' '), authorData);
   };
 
-  // TODO: Middleware for grabbing all articles with a certain category:
+  // DONE: Middleware for grabbing all articles with a certain category:
   articlesController.loadByCategory = function(ctx, next) {
     var categoryData = function(articlesInCategory) {
       ctx.articles = articlesInCategory;
@@ -37,7 +37,7 @@
     Article.findWhere('category', ctx.params.categoryName, categoryData);
   };
 
-  // TODO: Middleware for grabbing ALL articles:
+  // DONE: Middleware for grabbing ALL articles:
   articlesController.loadAll = function(ctx, next) {
     var articleData = function(allArticles) {
       ctx.articles = Article.all;

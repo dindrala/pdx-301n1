@@ -12,7 +12,7 @@
     return template(article);
   };
 
-  // TODO: Stretch goal: Refactor to push this unique-check logic into the database.
+  // DONE: Stretch goal: Refactor to push this unique-check logic into the database.
   // Move any HTML into a template, in the HTML file where it belongs.
   articleView.populateFilters = function() {
     var options,
@@ -38,7 +38,7 @@
     });
   };
 
-  // TODO: Combine both filter functions to a single event handler,
+  // DONE: Combine both filter functions to a single event handler,
   // which simply redirects to a url like: /category/skateboarding or /author/Kevin+Bacon
   articleView.handleFilters = function() {
     $('#filters').one('change', 'select', function() {
@@ -72,7 +72,7 @@
   //   });
   // };
 
-  // TODO: Remove the setTeasers method, and replace with a plain ole link in the article template.
+  // DONE: Remove the setTeasers method, and replace with a plain ole link in the article template.
   // articleView.setTeasers = function() {
   //   $('.article-body *:nth-of-type(n+2)').hide();
   //
@@ -119,7 +119,7 @@
     $('#article-json').val(JSON.stringify(article) + ',');
   };
 
-  // TODO: Refactor this method so it works with any number of articles.
+  // DONE: Refactor this method so it works with any number of articles.
   // Also, it should be idempotent, so it can be run multiple times with identical results.
   articleView.index = function(articles) {
     $('#articles').show().siblings().hide();
@@ -130,7 +130,7 @@
     });
 
     articleView.populateFilters();
-    // TODO: Call the new unified filter handler function
+    // DONE: Call the new unified filter handler function
     articleView.handleFilters();
     // articleView.handleCategoryFilter();
     // articleView.handleAuthorFilter();
